@@ -1,22 +1,23 @@
-const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc'; 
-const city = 'London'; // Default city
+const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc';
 
-// Fetch weather data
-async function fetchWeather() {
+// Fetch weather data based on user input
+async function fetchWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
   try {
     const response = await fetch(url);
-    
+
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`City not found!`);
     }
 
     const data = await response.json();
     updateUI(data);
   } catch (error) {
     console.error('Error fetching weather data:', error);
-    document.getElementById('location').textContent = 'Error loading weather';
+    document.getElementById('location').textContent = 'City not found!';
+    document.getElementById('temperature').textContent = '';
+    document.getElementById('condition').textContent = '';
   }
 }
 
@@ -24,7 +25,7 @@ async function fetchWeather() {
 function updateUI(data) {
   const location = data.name;
   const temperature = Math.round(data.main.temp);
-  const condition = data.weather[0].main.toLowerCase(); 
+  const condition = data.weather[0].main.toLowerCase();
 
   document.getElementById('location').textContent = location;
   document.getElementById('temperature').textContent = `${temperature}°C`;
@@ -47,5 +48,13 @@ function updateBackground(condition) {
   }
 }
 
-// Initialize the app
-fetchWeather();
+// Trigger weather search
+function searchWeather() {
+  const city = document.getElementById('cityInput').value.trim();
+  if (city) {
+    fetchWeather(city);
+  }
+}
+
+// Initialize with default city
+fetchWeather('London');

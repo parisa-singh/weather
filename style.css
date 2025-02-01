@@ -18,10 +18,39 @@ body, html {
   transition: background-image 0.5s ease-in-out;
 }
 
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .weather-info {
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
+  margin-top: 10px;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  margin-top: 5px;
+  padding: 8px 12px;
+  font-size: 16px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
 }
 
 /* Backgrounds */
@@ -42,7 +71,7 @@ body, html {
 }
 
 .default-background {
-  background-color: #333; /* Default background for unknown conditions */
+  background-color: #333;
 }
 
 /* Animations */
