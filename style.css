@@ -1,0 +1,52 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  #app {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+  }
+  
+  .weather-info {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Backgrounds */
+  .rain-background {
+    background-image: url('assets/rain.jpg');
+  }
+  
+  .clear-background {
+    background-image: url('assets/clear.jpg');
+  }
+  
+  .snow-background {
+    background-image: url('assets/snow.jpg');
+  }
+  
+  .clouds-background {
+    background-image: url('assets/clouds.jpg');
+  }
+  
+  /* Animations */
+  @keyframes rainAnimation {
+    from { background-position: 0 0; }
+    to { background-position: 100% 100%; }
+  }
+  
+  .rain-background {
+    animation: rainAnimation 1s linear infinite;
+  }
