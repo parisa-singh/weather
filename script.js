@@ -16,8 +16,8 @@ async function fetchWeather(city) {
   } catch (error) {
     console.error('Error fetching weather data:', error);
     document.getElementById('location').textContent = 'City not found!';
-    document.getElementById('temperature').textContent = '';
-    document.getElementById('condition').textContent = '';
+    document.getElementById('temperature').textContent = '-';
+    document.getElementById('condition').textContent = '-';
   }
 }
 
@@ -48,13 +48,21 @@ function updateBackground(condition) {
   }
 }
 
-// Trigger weather search
-function searchWeather() {
+// Search Button Click Event
+document.getElementById('searchBtn').addEventListener('click', () => {
   const city = document.getElementById('cityInput').value.trim();
   if (city) {
     fetchWeather(city);
   }
-}
+});
+
+// Allow "Enter" key to trigger search
+document.getElementById('cityInput').addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Prevent form submission (if applicable)
+    document.getElementById('searchBtn').click();
+  }
+});
 
 // Initialize with default city
 fetchWeather('London');
