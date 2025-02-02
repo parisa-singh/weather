@@ -70,6 +70,10 @@ button:hover {
   background-image: url('assets/clouds.jpg');
 }
 
+.fog-background {
+  background-image: url('assets/fog.jpg');
+}
+
 .default-background {
   background-color: #333;
 }
