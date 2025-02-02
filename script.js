@@ -43,7 +43,8 @@ function updateBackground(condition) {
     rain: 'rain-background',
     clear: 'clear-background',
     snow: 'snow-background',
-    clouds: 'clouds-background'
+    clouds: 'clouds-background',
+    fog: 'fog-background'
   };
 
   // If condition matches a known type, update background
@@ -67,4 +68,4 @@ document.getElementById('cityInput').addEventListener('keypress', (event) => {
 });
 
 // Initialize with default city
-fetchWeather('London');
+fetchWeather('Amherst');
