@@ -1,6 +1,6 @@
-const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc';
+const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc'; // Make sure this is correct
 
-// Fetch weather data based on user input
+// Function to fetch weather data
 async function fetchWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
@@ -21,7 +21,7 @@ async function fetchWeather(city) {
   }
 }
 
-// Update the UI with weather data
+// Function to update UI with weather data
 function updateUI(data) {
   const location = data.name;
   const temperature = Math.round(data.main.temp);
@@ -34,27 +34,37 @@ function updateUI(data) {
   updateBackground(condition);
 }
 
-// Update the background based on weather condition
+// Function to update background based on weather
 function updateBackground(condition) {
   const app = document.getElementById('app');
   app.className = ''; // Reset previous classes
 
-  const weatherConditions = ['rain', 'clear', 'snow', 'clouds'];
+  const weatherConditions = {
+    rain: 'rain-background',
+    clear: 'clear-background',
+    snow: 'snow-background',
+    clouds: 'clouds-background'
+  };
 
-  if (weatherConditions.includes(condition)) {
-    app.classList.add(`${condition}-background`);
-  } else {
-    app.classList.add('default-background'); // Fallback background
-  }
+  // If condition matches a known type, update background
+  app.classList.add(weatherConditions[condition] || 'default-background');
 }
 
-// Trigger weather search
-function searchWeather() {
+// Event listener for search button
+document.getElementById('searchBtn').addEventListener('click', () => {
   const city = document.getElementById('cityInput').value.trim();
   if (city) {
     fetchWeather(city);
   }
-}
+});
+
+// Allow Enter key to trigger search
+document.getElementById('cityInput').addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.getElementById('searchBtn').click();
+  }
+});
 
 // Initialize with default city
 fetchWeather('London');
