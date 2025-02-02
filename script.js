@@ -1,4 +1,4 @@
-const API_KEY = 'b42bd5796d8dbf106caea20bddb49fc6';
+const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc';
 
 // Fetch weather data based on user input
 async function fetchWeather(city) {
@@ -16,8 +16,8 @@ async function fetchWeather(city) {
   } catch (error) {
     console.error('Error fetching weather data:', error);
     document.getElementById('location').textContent = 'City not found!';
-    document.getElementById('temperature').textContent = '-';
-    document.getElementById('condition').textContent = '-';
+    document.getElementById('temperature').textContent = '';
+    document.getElementById('condition').textContent = '';
   }
 }
 
@@ -48,21 +48,13 @@ function updateBackground(condition) {
   }
 }
 
-// Search Button Click Event
-document.getElementById('searchBtn').addEventListener('click', () => {
+// Trigger weather search
+function searchWeather() {
   const city = document.getElementById('cityInput').value.trim();
   if (city) {
     fetchWeather(city);
   }
-});
-
-// Allow "Enter" key to trigger search
-document.getElementById('cityInput').addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault(); // Prevent form submission (if applicable)
-    document.getElementById('searchBtn').click();
-  }
-});
+}
 
 // Initialize with default city
 fetchWeather('London');
