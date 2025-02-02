@@ -1,4 +1,4 @@
-const API_KEY = '41306ce301e74b4fa8f00915250202';
+const API_KEY = 'b42bd5796d8dbf106caea20bddb49fc6';
 
 // Fetch weather data based on user input
 async function fetchWeather(city) {
