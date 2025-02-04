@@ -28,7 +28,7 @@ function updateUI(data) {
   const condition = data.weather[0].main.toLowerCase();
 
   document.getElementById('location').textContent = location;
-  document.getElementById('temperature').textContent = '${temperature}°C';
+  document.getElementById('temperature').textContent = `${temperature}°C`;
   document.getElementById('condition').textContent = condition;
 
   updateBackground(condition);
@@ -40,12 +40,19 @@ function updateBackground(condition) {
   app.className = ''; // Reset previous classes
 
   const weatherConditions = {
-    rain: 'rain-background',
-    clear: 'clear-background',
-    snow: 'snow-background',
-    clouds: 'clouds-background',
-    fog: 'fog-background'
-  };
+    clear: 'clear-sky-background', 
+    clouds: 'scattered-clouds-background', 
+    rain: 'moderate-rain-background', 
+    thunderstorm: 'thunderstorm-background', 
+    snow: 'snow-background', 
+    mist: 'mist-background', 
+    fog: 'fog-background', 
+    haze: 'haze-background', 
+    dust: 'dust-background', 
+    smoke: 'smoke-background', 
+    tornado: 'tornado-background' 
+    
+    };
 
   // If condition matches a known type, update background
   app.classList.add(weatherConditions[condition] || 'default-background');

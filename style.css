@@ -54,6 +54,12 @@ button:hover {
 }
 
 /* Weather Backgrounds */
+/* Add this to ensure default background works */
+.default-background {
+  background-color: #333;
+  background-image: url('assets/default.jpg'); 
+}
+
 .clear-sky-background {
   background-image: url('assets/clear.jpg');
 }
