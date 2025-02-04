@@ -1,21 +1,14 @@
-const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc'; 
+const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc'; // Make sure this is correct
 
-// fetching weather data
+// Function to fetch weather data
 async function fetchWeather(city) {
-  // empty input
-  if (!city) {
-    updateError("Please enter a city!");
-    return;
-  }
-
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+  const url = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric'; 
 
   try {
     const response = await fetch(url);
 
-    // incorrect
     if (!response.ok) {
-      throw new Error(`City not found!`);
+      throw new Error("City not found!");
     }
 
     const data = await response.json();
@@ -35,7 +28,7 @@ function updateUI(data) {
   const condition = data.weather[0].main.toLowerCase();
 
   document.getElementById('location').textContent = location;
-  document.getElementById('temperature').textContent = `${temperature}°C`;
+  document.getElementById('temperature').textContent = '${temperature}°C';
   document.getElementById('condition').textContent = condition;
 
   updateBackground(condition);
@@ -47,22 +40,11 @@ function updateBackground(condition) {
   app.className = ''; // Reset previous classes
 
   const weatherConditions = {
-    "clear sky": "assets/clear.jpg",
-    "few clouds": "assets/few-clouds.jpg",
-    "scattered clouds": "assets/cloudy.jpg",
-    "broken clouds": "assets/overcast.jpg",
-    "overcast clouds": "assets/overcast.jpg",
-    "light rain": "assets/light-rain.jpg",
-    "moderate rain": "assets/rain.jpg",
-    "heavy intensity rain": "assets/heavy-rain.jpg",
-    "thunderstorm": "assets/thunderstorm.jpg",
-    "snow": "assets/snow.jpg",
-    "mist": "assets/mist.jpg",
-    "fog": "assets/fog.jpg",
-    "haze": "assets/haze.jpg",
-    "dust": "assets/dust.jpg",
-    "smoke": "assets/smoke.jpg",
-    "tornado": "assets/tornado.jpg"
+    rain: 'rain-background',
+    clear: 'clear-background',
+    snow: 'snow-background',
+    clouds: 'clouds-background',
+    fog: 'fog-background'
   };
 
   // If condition matches a known type, update background
