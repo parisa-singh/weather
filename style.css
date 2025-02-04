@@ -53,27 +53,69 @@ button:hover {
   background: #0056b3;
 }
 
-/* Backgrounds */
-.rain-background {
+/* Weather Backgrounds */
+.clear-sky-background {
+  background-image: url('assets/clear.jpg');
+}
+
+.few-clouds-background {
+  background-image: url('assets/few-clouds.jpg');
+}
+
+.scattered-clouds-background {
+  background-image: url('assets/cloudy.jpg');
+}
+
+.broken-clouds-background,
+.overcast-clouds-background {
+  background-image: url('assets/overcast.jpg');
+}
+
+.light-rain-background {
+  background-image: url('assets/light-rain.jpg');
+}
+
+.moderate-rain-background {
   background-image: url('assets/rain.jpg');
 }
 
-.clear-background {
-  background-image: url('assets/clear.jpg');
+.heavy-intensity-rain-background {
+  background-image: url('assets/heavy-rain.jpg');
+}
+
+.thunderstorm-background {
+  background-image: url('assets/thunderstorm.jpg');
 }
 
 .snow-background {
   background-image: url('assets/snow.jpg');
 }
 
-.clouds-background {
-  background-image: url('assets/clouds.jpg');
+.mist-background {
+  background-image: url('assets/mist.jpg');
 }
 
 .fog-background {
   background-image: url('assets/fog.jpg');
 }
 
+.haze-background {
+  background-image: url('assets/haze.jpg');
+}
+
+.dust-background {
+  background-image: url('assets/dust.jpg');
+}
+
+.smoke-background {
+  background-image: url('assets/smoke.jpg');
+}
+
+.tornado-background {
+  background-image: url('assets/tornado.jpg');
+}
+
+/* Default background */
 .default-background {
   background-color: #333;
 }
