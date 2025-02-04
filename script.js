@@ -1,9 +1,10 @@
-const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc'; // Replace with your secured API key
+const API_KEY = 'e17f308cb104bf1f4c8b8f0bf06ee7dc'; 
 
-// Function to fetch weather data
+// fetching weather data
 async function fetchWeather(city) {
+  // empty input
   if (!city) {
-    updateError("Please enter a city name!");
+    updateError("Please enter a city!");
     return;
   }
 
@@ -12,14 +13,18 @@ async function fetchWeather(city) {
   try {
     const response = await fetch(url);
 
+    // incorrect
     if (!response.ok) {
-      throw new Error("City not found!");
+      throw new Error(`City not found!`);
     }
 
     const data = await response.json();
     updateUI(data);
   } catch (error) {
-    updateError(error.message);
+    console.error('Error fetching weather data:', error);
+    document.getElementById('location').textContent = 'City not found!';
+    document.getElementById('temperature').textContent = '';
+    document.getElementById('condition').textContent = '';
   }
 }
 
@@ -27,34 +32,21 @@ async function fetchWeather(city) {
 function updateUI(data) {
   const location = data.name;
   const temperature = Math.round(data.main.temp);
-  const condition = data.weather[0].description; // More detailed description
-  const iconCode = data.weather[0].icon;
-  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  const condition = data.weather[0].main.toLowerCase();
 
   document.getElementById('location').textContent = location;
   document.getElementById('temperature').textContent = `${temperature}°C`;
   document.getElementById('condition').textContent = condition;
-  
-  const weatherIcon = document.getElementById('weatherIcon');
-  weatherIcon.src = iconUrl;
-  weatherIcon.style.display = "block";
 
   updateBackground(condition);
-}
-
-// Function to handle errors
-function updateError(message) {
-  document.getElementById('location').textContent = message;
-  document.getElementById('temperature').textContent = '-';
-  document.getElementById('condition').textContent = '-';
-  document.getElementById('weatherIcon').style.display = "none";
 }
 
 // Function to update background based on weather
 function updateBackground(condition) {
   const app = document.getElementById('app');
+  app.className = ''; // Reset previous classes
 
-  const weatherImages = {
+  const weatherConditions = {
     "clear sky": "assets/clear.jpg",
     "few clouds": "assets/few-clouds.jpg",
     "scattered clouds": "assets/cloudy.jpg",
@@ -73,13 +65,16 @@ function updateBackground(condition) {
     "tornado": "assets/tornado.jpg"
   };
 
-  app.style.backgroundImage = `url(${weatherImages[condition] || 'assets/default.jpg'})`;
+  // If condition matches a known type, update background
+  app.classList.add(weatherConditions[condition] || 'default-background');
 }
 
 // Event listener for search button
 document.getElementById('searchBtn').addEventListener('click', () => {
   const city = document.getElementById('cityInput').value.trim();
-  fetchWeather(city);
+  if (city) {
+    fetchWeather(city);
+  }
 });
 
 // Allow Enter key to trigger search
